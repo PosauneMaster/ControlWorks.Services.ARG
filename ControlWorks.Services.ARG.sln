@@ -25,6 +25,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.TestHarness", "Logge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PviTestHarness", "PviTestHarness\PviTestHarness.csproj", "{6D5363C7-E8D7-4E45-A54A-6B6D85B2AAC8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{52033B34-52A7-4C23-B3FE-2002B9704CB0}"
+	ProjectSection(SolutionItems) = preProject
+		lib\BR.AN.PviServices.dll = lib\BR.AN.PviServices.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
