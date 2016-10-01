@@ -2,9 +2,6 @@
 using ControlWorks.Services.WcfServices;
 using ControlWorks.Utils.Logging;
 using System;
-using System.Configuration;
-using System.ServiceModel;
-using System.ServiceModel.Configuration;
 using System.Threading.Tasks;
 
 namespace ControlWorks.Services

@@ -47,7 +47,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -77,6 +79,20 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControlWorks.PviService\ControlWorks.PviService.csproj">
+      <Project>{b57cab06-e38b-435b-ae53-22a8354ee0b2}</Project>
+      <Name>ControlWorks.PviService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControlWorks.Services.WcfServices\ControlWorks.Services.WcfServices.csproj">
+      <Project>{69074f6f-60a4-444b-a704-3ae1098cf50f}</Project>
+      <Name>ControlWorks.Services.WcfServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControlWorks.Utils.Logging\ControlWorks.Utils.Logging.csproj">
+      <Project>{0a46e292-15ed-4884-bcff-aed38d840b4e}</Project>
+      <Name>ControlWorks.Utils.Logging</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
