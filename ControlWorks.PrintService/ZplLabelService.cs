@@ -43,6 +43,6 @@ namespace ControlWorks.PrintService
             }
         }
 
-        protected abstract string GetLabel();
+        public abstract string GetLabel();
     }
 }

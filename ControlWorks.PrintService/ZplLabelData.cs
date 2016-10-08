@@ -23,6 +23,7 @@ namespace ControlWorks.PrintService
         public string LabInspector { get; set; }
         public DateTime LabInspectionDate { get; set; }
         public string RmR { get; set; }
+        public DateTime CalibrationDate { get; set; }
 
         public string LinearMeters { get; set; }
 
@@ -64,6 +65,11 @@ namespace ControlWorks.PrintService
         public string GetProductionDateField()
         {
             return String.Format("CAL DATE {0}", ProductionDate.ToString("MM/dd/yy"));
+        }
+
+        public string GetCalibrationDateField()
+        {
+            return String.Format("CAL DATE {0}", CalibrationDate.ToString("MM/dd/yy"));
         }
 
         public string GetLabInspectionDateField()

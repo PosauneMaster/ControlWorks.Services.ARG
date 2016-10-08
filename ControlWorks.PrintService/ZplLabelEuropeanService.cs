@@ -10,12 +10,14 @@ namespace ControlWorks.PrintService
 {
     public class ZplLabelEuropeanService : ZplLabelService
     {
+
+
         public ZplLabelEuropeanService(ZplLabelData data, ILogger logger)
         {
             Initialize(data, logger);
         }
 
-        protected override string GetLabel()
+        public override string GetLabel()
         {
             var zplLabel = new ZplLabel();
 
@@ -27,7 +29,6 @@ namespace ControlWorks.PrintService
                 ZplFactory.TextField().At(80, 416).SetFont("0", FieldOrientation.Normal, 60).WithData(LabelData.LinearMeters + " LM"),
                 ZplFactory.BarcodeField().At(300, 416).SetBarcodeType(BarcodeType.Code128).SetFont(Fonts.B, FieldOrientation.Normal, 1).WithData(LabelData.RmR).Height(70).BarWidth(2),
 
-
                 /****************             Inspection Field             ****************/
                 ZplFactory.TextField().At(500, 500).SetFont("0", FieldOrientation.Normal, 60).WithData("INSP:"),
                 ZplFactory.TextField().At(450, 560).SetFont("R", FieldOrientation.Normal, 40).WithData("LAB"),
@@ -38,16 +39,13 @@ namespace ControlWorks.PrintService
                 ZplFactory.TextField().At(640, 660).SetFont("0", FieldOrientation.Normal, 72).WithData(LabelData.Inspector),
                 /****************             Inspection Field             ****************/
 
-
                 ZplFactory.TextField().At(80, 540).SetFont("R", FieldOrientation.Normal, 60).WithData(LabelData.GetSqYards()),
                 ZplFactory.TextField().At(80, 610).SetFont("R", FieldOrientation.Normal, 60).WithData(LabelData.GetBatchField()),
                 ZplFactory.TextField().At(80, 680).SetFont("R", FieldOrientation.Normal, 60).WithData(LabelData.GetChangeField()),
 
-
                 /****************             Bottom Field             ****************/
-                ZplFactory.TextField().At(80, 800).SetFont("0", FieldOrientation.Normal, 84).WithData(LabelData.GetProductionDateField()),
 
-                ZplFactory.TextField().At(80, 800).SetFont("0", FieldOrientation.Normal, 84).WithData(LabelData.GetProductionDateField()),
+                ZplFactory.TextField().At(80, 800).SetFont("0", FieldOrientation.Normal, 84).WithData(LabelData.GetCalibrationDateField()),
                 ZplFactory.TextField().At(80, 900).SetFont("0", FieldOrientation.Normal, 84).WithData(LabelData.Batch),
                 ZplFactory.BarcodeField().At(350, 900).SetBarcodeType(BarcodeType.Code128).SetFont(Fonts.A, FieldOrientation.Normal, 1).WithData(LabelData.Batch).Height(70).BarWidth(4),
                 ZplFactory.BarcodeField().At(80, 980).SetBarcodeType(BarcodeType.Code128).SetFont(Fonts.A, FieldOrientation.Normal, 1).WithData(LabelData.CoilSerialNumber).Height(40).BarWidth(2),

@@ -29,5 +29,15 @@ namespace ControlWorks.Utils
         {
             get { return ConfigurationManager.AppSettings["LogZplCodes"].ToUpper().StartsWith("T", StringComparison.CurrentCulture); }
         }
+
+        public static string AmericanLabelSettings
+        {
+            get { return ConfigurationManager.AppSettings["AmericanLabelSettings"]; }
+        }
+
+        public static string EuropeanLabelSettings
+        {
+            get { return ConfigurationManager.AppSettings["EuropeanLabelSettings"]; }
+        }
     }
 }

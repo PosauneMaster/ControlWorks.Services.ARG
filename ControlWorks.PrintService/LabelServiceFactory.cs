@@ -1,4 +1,7 @@
-﻿using ControlWorks.Utils.Logging;
+﻿using ControlWorks.Utils;
+using ControlWorks.Utils.Logging;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace ControlWorks.PrintService
 {
@@ -9,7 +12,16 @@ namespace ControlWorks.PrintService
         {
             if (labelType == 0)
             {
-                return new ZplLabelAmericanService(data, logger);
+                var serializer = new XmlSerializer(typeof(LabelSettingsAmerican));
+                var reader = new StreamReader(ConfigurationProvider.AmericanLabelSettings);
+
+                var settings = (LabelSettingsAmerican)serializer.Deserialize(reader);
+
+                var labelSettings = new ZplLabelAmericanService(data, logger);
+
+                labelSettings.LabelSettings = settings;
+
+                return labelSettings;
             }
             if (labelType == 1)
             {

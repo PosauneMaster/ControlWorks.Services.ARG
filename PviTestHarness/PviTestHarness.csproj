@@ -101,6 +101,10 @@
       <Project>{3d15ac8c-f75d-40d3-88a9-21ff07dd0bc9}</Project>
       <Name>ControlWorks.Database.SqlServer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ControlWorks.PrintService\ControlWorks.PrintService.csproj">
+      <Project>{99427184-cc6b-4c05-9619-ee2186845096}</Project>
+      <Name>ControlWorks.PrintService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ControlWorks.PviService\ControlWorks.PviService.csproj">
       <Project>{b57cab06-e38b-435b-ae53-22a8354ee0b2}</Project>
       <Name>ControlWorks.PviService</Name>
