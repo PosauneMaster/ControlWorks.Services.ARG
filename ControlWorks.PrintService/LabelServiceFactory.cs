@@ -12,23 +12,33 @@ namespace ControlWorks.PrintService
         {
             if (labelType == 0)
             {
-                var serializer = new XmlSerializer(typeof(LabelSettingsAmerican));
-                var reader = new StreamReader(ConfigurationProvider.AmericanLabelSettings);
-
-                var settings = (LabelSettingsAmerican)serializer.Deserialize(reader);
 
                 var labelSettings = new ZplLabelAmericanService(data, logger);
 
-                labelSettings.LabelSettings = settings;
+                labelSettings.LabelSettings = GetSettings<LabelSettingsAmerican>();
 
                 return labelSettings;
             }
             if (labelType == 1)
             {
-                return new ZplLabelEuropeanService(data, logger);
+                var labelSettings = new ZplLabelEuropeanService(data, logger);
+
+                labelSettings.LabelSettings = GetSettings<LabelSettingsEuropean>();
+
+                return labelSettings;
             }
 
             return null;
+        }
+
+        private static T GetSettings<T>()
+        {
+            var serializer = new XmlSerializer(typeof(T));
+            var reader = new StreamReader(ConfigurationProvider.AmericanLabelSettings);
+
+            var settings = (T)serializer.Deserialize(reader);
+
+            return settings;
         }
     }
 }

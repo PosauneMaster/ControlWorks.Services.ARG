@@ -106,5 +106,32 @@ namespace PviTestHarness
 
 
         }
+
+        private void btnTestEuropean_Click(object sender, EventArgs e)
+        {
+            var data = new ZplLabelData();
+
+            data.LinearMeters = "98.7";
+            data.RmR = "RMR 2152 02";
+            data.SqYards = "12.34";
+            data.LinearMeters = "23.45";
+            data.GeneratedMaterialType = "B175.045.6";
+            data.MaterialType = "B175.045";
+            data.TolerancePlus = "0.003";
+            data.ToleranceMinus = "0.002";
+            data.ChangeNumber = "X80";
+            data.CoilSerialNumber = "160825304801";
+            data.LabInspector = "JP";
+            data.Inspector = "TK";
+            data.Batch = "2952";
+            data.CalibrationDate = DateTime.Parse("2016-09-01T00:00:00");
+            data.InspectionDate = DateTime.Parse("2016-08-31T00:00:00");
+            data.LabInspectionDate = DateTime.Parse("2016-08-30T00:00:00");
+
+
+            var service = new ZplLabelEuropeanService(data, null);
+
+            var label = service.GetLabel();
+        }
     }
 }

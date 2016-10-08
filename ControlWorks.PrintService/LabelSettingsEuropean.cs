@@ -7,20 +7,22 @@ namespace ControlWorks.PrintService
     public class LabelSettingsEuropean
     {
         public Point GeneratedMaterialType { get; set; }
-        public Point GeneratedMaterialTypeBarcode { get; set; }
+        //public Point GeneratedMaterialTypeBarcode { get; set; }
         public Point RMRText { get; set; }
         public Point RMRBarcode { get; set; }
+        public Point Tolerance { get; set; }
         public Point LinearMeters { get; set; }
+        public Point RMRFullBarcode { get; set; }
         public Point INSP { get; set; }
+        public Point SqYards { get; set; }
         public Point LAB { get; set; }
         public Point MATLINSP { get; set; }
+        public Point BatchField { get; set; }
         public Point LabInspectionDate { get; set; }
         public Point InspectionDate { get; set; }
         public Point LabInspector { get; set; }
         public Point Inspector { get; set; }
-        public Point Tolerance { get; set; }
         public Point Change { get; set; }
-        public Point BatchField { get; set; }
         public Point CalibrationDate { get; set; }
         public Point Batch1 { get; set; }
         public Point Batch1Barcode { get; set; }
