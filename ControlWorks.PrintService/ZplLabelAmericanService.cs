@@ -70,11 +70,11 @@ namespace ControlWorks.PrintService
                 ZplFactory.TextField().At(LabelSettings.CalibrationDate.X, LabelSettings.CalibrationDate.Y).SetFont("0", FieldOrientation.Normal, 84).WithData(LabelData.GetCalibrationDateField()),
                 ZplFactory.TextField().At(LabelSettings.Batch1.X, LabelSettings.Batch1.Y).SetFont("0", FieldOrientation.Normal, 84).WithData(LabelData.Batch),
                 ZplFactory.BarcodeField().At(LabelSettings.Batch1Barcode.X, LabelSettings.Batch1Barcode.Y).SetBarcodeType(BarcodeType.Code128).SetFont(Fonts.A, FieldOrientation.Normal, 1).WithData(LabelData.Batch).Height(70).BarWidth(4),
-                ZplFactory.BarcodeField().At(LabelSettings.CoilSerialNumber1Barcode.X, LabelSettings.CoilSerialNumber1Text.Y).SetBarcodeType(BarcodeType.Code128).SetFont(Fonts.A, FieldOrientation.Normal, 1).WithData(LabelData.CoilSerialNumber).Height(40).BarWidth(2),
+                ZplFactory.BarcodeField().At(LabelSettings.CoilSerialNumber1Barcode.X, LabelSettings.CoilSerialNumber1Barcode.Y).SetBarcodeType(BarcodeType.Code128).SetFont(Fonts.A, FieldOrientation.Normal, 1).WithData(LabelData.CoilSerialNumber).Height(40).BarWidth(2),
                 ZplFactory.TextField().At(LabelSettings.CoilSerialNumber1Text.X, LabelSettings.CoilSerialNumber1Text.Y).SetFont("T", FieldOrientation.Normal, 40).WithData(LabelData.CoilSerialNumber),
                 ZplFactory.TextField().At(LabelSettings.Batch2.X, LabelSettings.Batch2.Y).SetFont("0", FieldOrientation.Normal, 84).WithData(LabelData.Batch),
                 ZplFactory.BarcodeField().At(LabelSettings.Batch2Barcode.X, LabelSettings.Batch2Barcode.Y).SetBarcodeType(BarcodeType.Code128).SetFont(Fonts.B, FieldOrientation.Normal, 1).WithData(LabelData.Batch).Height(70).BarWidth(4),
-                ZplFactory.BarcodeField().At(LabelSettings.CoilSerialNumber1Barcode.X, LabelSettings.CoilSerialNumber1Barcode.Y).SetBarcodeType(BarcodeType.Code128).SetFont(Fonts.B, FieldOrientation.Normal, 1).WithData(LabelData.CoilSerialNumber).Height(40).BarWidth(2),
+                ZplFactory.BarcodeField().At(LabelSettings.CoilSerialNumber2Barcode.X, LabelSettings.CoilSerialNumber2Barcode.Y).SetBarcodeType(BarcodeType.Code128).SetFont(Fonts.B, FieldOrientation.Normal, 1).WithData(LabelData.CoilSerialNumber).Height(40).BarWidth(2),
                 ZplFactory.TextField().At(LabelSettings.CoilSerialNumber2Text.X, LabelSettings.CoilSerialNumber2Text.Y).SetFont("T", FieldOrientation.Normal, 40).WithData(LabelData.CoilSerialNumber)
                 ).At(1, 1).ToString();
 

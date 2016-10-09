@@ -13,19 +13,19 @@ namespace ControlWorks.PrintService
             if (labelType == 0)
             {
 
-                var labelSettings = new ZplLabelAmericanService(data, logger);
+                var labelService = new ZplLabelAmericanService(data, logger);
 
-                labelSettings.LabelSettings = GetSettings<LabelSettingsAmerican>();
+                labelService.LabelSettings = GetSettings<LabelSettingsAmerican>();
 
-                return labelSettings;
+                return labelService;
             }
             if (labelType == 1)
             {
-                var labelSettings = new ZplLabelEuropeanService(data, logger);
+                var labelService = new ZplLabelEuropeanService(data, logger);
 
-                labelSettings.LabelSettings = GetSettings<LabelSettingsEuropean>();
+                labelService.LabelSettings = GetSettings<LabelSettingsEuropean>();
 
-                return labelSettings;
+                return labelService;
             }
 
             return null;

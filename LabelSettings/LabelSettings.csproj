@@ -52,6 +52,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="LabelaryClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -83,6 +84,10 @@
     <ProjectReference Include="..\ControlWorks.PrintService\ControlWorks.PrintService.csproj">
       <Project>{99427184-cc6b-4c05-9619-ee2186845096}</Project>
       <Name>ControlWorks.PrintService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControlWorks.Utils.Logging\ControlWorks.Utils.Logging.csproj">
+      <Project>{0a46e292-15ed-4884-bcff-aed38d840b4e}</Project>
+      <Name>ControlWorks.Utils.Logging</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

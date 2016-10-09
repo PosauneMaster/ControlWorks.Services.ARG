@@ -3,6 +3,7 @@ using ControlWorks.PrintService;
 using ControlWorks.PviService;
 using ControlWorks.Utils.Logging;
 using System;
+using System.Configuration;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
@@ -60,8 +61,22 @@ namespace PviTestHarness
             _logger = new Log4NetLogger();
         }
 
+        private T LoadFile<T>(string filename)
+        {
+            var serializer = new XmlSerializer(typeof(T));
+            var reader = new StreamReader(filename);
+
+            var settings = (T)serializer.Deserialize(reader);
+
+            return settings;
+        }
+
+
+
         private void button2_Click(object sender, EventArgs e)
         {
+
+
             var data = new ZplLabelData();
 
             data.SqYards = "12.34";
@@ -79,8 +94,9 @@ namespace PviTestHarness
             data.InspectionDate = DateTime.Parse("2016-08-31T00:00:00");
             data.LabInspectionDate = DateTime.Parse("2016-08-30T00:00:00");
 
-
+            var settings = LoadFile<LabelSettingsAmerican>(ConfigurationManager.AppSettings["AmericanLabelSettings"]);
             var service = new ZplLabelAmericanService(data, null);
+            service.LabelSettings = settings;
 
             var label = service.GetLabel();
 
