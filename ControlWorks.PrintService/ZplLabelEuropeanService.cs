@@ -12,6 +12,14 @@ namespace ControlWorks.PrintService
     {
         public LabelSettingsEuropean LabelSettings { get; set; }
 
+
+        public ZplLabelEuropeanService()
+        {
+            Logger = new Log4NetLogger();
+            SetPrinterName();
+
+        }
+
         public ZplLabelEuropeanService(ZplLabelData data, ILogger logger)
         {
             Initialize(data, logger);
@@ -44,7 +52,7 @@ namespace ControlWorks.PrintService
                 ZplFactory.TextField().At(LabelSettings.Change.X, LabelSettings.Change.Y).SetFont("R", FieldOrientation.Normal, 60).WithData(LabelData.GetChangeField()),
 
                 /****************             Bottom Field             ****************/
-                ZplFactory.TextField().At(LabelSettings.CalibrationDate.X, LabelSettings.CalibrationDate.Y).SetFont("0", FieldOrientation.Normal, 84).WithData(LabelData.GetCalibrationDateField()),
+                ZplFactory.TextField().At(LabelSettings.CalibrationDate.X, LabelSettings.CalibrationDate.Y).SetFont("0", FieldOrientation.Normal, 84).WithData(LabelData.GetExtrusionDateField()),
 
                 ZplFactory.TextField().At(LabelSettings.Batch1.X, LabelSettings.Batch1.Y).SetFont("0", FieldOrientation.Normal, 84).WithData(LabelData.Batch),
                 ZplFactory.BarcodeField().At(LabelSettings.Batch1Barcode.X, LabelSettings.Batch1Barcode.Y).SetBarcodeType(BarcodeType.Code128).SetFont(Fonts.A, FieldOrientation.Normal, 1).WithData(LabelData.Batch).Height(70).BarWidth(4),

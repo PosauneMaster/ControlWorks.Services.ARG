@@ -37,18 +37,19 @@
             this.btnNewEuropean = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnViewSample = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblFilename = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.colPropertyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colHorizontalOffset = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colVerticalOffset = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.txtZplCode = new System.Windows.Forms.TextBox();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnPrint = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -69,7 +70,8 @@
             this.btnNewEuropean,
             this.toolStripSeparator2,
             this.btnViewSample,
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.btnPrint});
             this.toolStrip1.Location = new System.Drawing.Point(10, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(817, 25);
@@ -135,6 +137,16 @@
             this.btnViewSample.Text = "View Sample";
             this.btnViewSample.Click += new System.EventHandler(this.btnViewSample_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(87, 22);
+            this.toolStripButton1.Text = "View Zpl Code";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -184,24 +196,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(384, 614);
             this.dataGridView1.TabIndex = 0;
             // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.Filter = "XML files|*.xml|All files|*.*";
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "XML files|*.xml|All files|*.*";
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.txtZplCode);
-            this.panel1.Location = new System.Drawing.Point(14, 7);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 600);
-            this.panel1.TabIndex = 0;
-            // 
             // colPropertyName
             // 
             this.colPropertyName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -209,7 +203,7 @@
             this.colPropertyName.HeaderText = "Label Field";
             this.colPropertyName.Name = "colPropertyName";
             this.colPropertyName.ReadOnly = true;
-            this.colPropertyName.Width = 83;
+            this.colPropertyName.Width = 77;
             // 
             // colHorizontalOffset
             // 
@@ -228,6 +222,15 @@
             this.colVerticalOffset.MinimumWidth = 100;
             this.colVerticalOffset.Name = "colVerticalOffset";
             // 
+            // panel1
+            // 
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.txtZplCode);
+            this.panel1.Location = new System.Drawing.Point(14, 7);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(400, 600);
+            this.panel1.TabIndex = 0;
+            // 
             // txtZplCode
             // 
             this.txtZplCode.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -237,15 +240,24 @@
             this.txtZplCode.Size = new System.Drawing.Size(400, 600);
             this.txtZplCode.TabIndex = 0;
             // 
-            // toolStripButton1
+            // saveFileDialog1
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(87, 22);
-            this.toolStripButton1.Text = "View Zpl Code";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.saveFileDialog1.Filter = "XML files|*.xml|All files|*.*";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "XML files|*.xml|All files|*.*";
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
+            this.btnPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(36, 22);
+            this.btnPrint.Text = "Print";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // Form1
             // 
@@ -298,6 +310,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colVerticalOffset;
         private System.Windows.Forms.TextBox txtZplCode;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton btnPrint;
     }
 }
 

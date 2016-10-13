@@ -24,6 +24,7 @@ namespace ControlWorks.PrintService
         public DateTime LabInspectionDate { get; set; }
         public string RmR { get; set; }
         public DateTime CalibrationDate { get; set; }
+        public DateTime ExtrusionDate { get; set; }
 
         public string LinearMeters { get; set; }
 
@@ -71,6 +72,12 @@ namespace ControlWorks.PrintService
         {
             return String.Format("CAL DATE {0}", CalibrationDate.ToString("MM/dd/yy"));
         }
+
+        public string GetExtrusionDateField()
+        {
+            return String.Format("CAL DATE {0}", ExtrusionDate.ToString("MM/dd/yy"));
+        }
+
 
         public string GetLabInspectionDateField()
         {

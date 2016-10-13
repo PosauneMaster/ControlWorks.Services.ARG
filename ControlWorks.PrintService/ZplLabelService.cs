@@ -21,9 +21,23 @@ namespace ControlWorks.PrintService
 
         }
 
-        private void SetPrinterName()
+        protected void SetPrinterName()
         {
             PrinterName = String.IsNullOrEmpty(ConfigurationProvider.ZplPrinterName) ? DEFAULT_PRINTER_NAME : ConfigurationProvider.ZplPrinterName;
+        }
+        public virtual void Print(string labelData)
+        {
+            try
+            {
+                Logger.LogInfo("Print:");
+                Logger.LogInfo($"\n{labelData}");
+                PrintNativeMethods.SendStringToPrinter(PrinterName, labelData);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Logger.LogError(ex);
+            }
         }
 
         public virtual void SendToPrinter()

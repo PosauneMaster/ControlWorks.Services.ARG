@@ -243,6 +243,7 @@ namespace ControlWorks.PviService
             data.SetProperty(nameof(data.Inspector), Variables["CoilData.Inspector"].Value);
             data.SetProperty(nameof(data.Batch), Variables["CoilData.BatchNumber"].Value);
             data.SetProperty(nameof(data.CalibrationDate), Variables["CoilData.CalibrationDate"].Value);
+            data.SetProperty(nameof(data.ExtrusionDate), Variables["CoilData.ExtrusionDate"].Value);
 
             data.SetInspectionDate(Variables["CoilData.InspectionDate"].Value, Variables["CoilData.InspectionTime"].Value);
             data.SetLabInspectionDate(Variables["CoilData.LabInspectDate"].Value);

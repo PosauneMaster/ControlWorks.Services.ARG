@@ -7,6 +7,12 @@ namespace ControlWorks.PrintService
     {
         public LabelSettingsAmerican LabelSettings { get; set; }
 
+        public ZplLabelAmericanService()
+        {
+            Logger = new Log4NetLogger();
+            SetPrinterName();
+        }
+
 
         public ZplLabelAmericanService(ZplLabelData data, ILogger logger)
         {
@@ -67,7 +73,7 @@ namespace ControlWorks.PrintService
                 ZplFactory.TextField().At(LabelSettings.Tolerance.X, LabelSettings.Tolerance.Y).SetFont("T", FieldOrientation.Normal, 60).WithData(LabelData.GetToleranceField()),
                 ZplFactory.TextField().At(LabelSettings.Change.X, LabelSettings.Change.Y).SetFont("T", FieldOrientation.Normal, 60).WithData(LabelData.GetChangeField()),
                 ZplFactory.TextField().At(LabelSettings.BatchField.X, LabelSettings.BatchField.Y).SetFont("T", FieldOrientation.Normal, 60).WithData(LabelData.GetBatchField()),
-                ZplFactory.TextField().At(LabelSettings.CalibrationDate.X, LabelSettings.CalibrationDate.Y).SetFont("0", FieldOrientation.Normal, 84).WithData(LabelData.GetCalibrationDateField()),
+                ZplFactory.TextField().At(LabelSettings.CalibrationDate.X, LabelSettings.CalibrationDate.Y).SetFont("0", FieldOrientation.Normal, 84).WithData(LabelData.GetExtrusionDateField()),
                 ZplFactory.TextField().At(LabelSettings.Batch1.X, LabelSettings.Batch1.Y).SetFont("0", FieldOrientation.Normal, 84).WithData(LabelData.Batch),
                 ZplFactory.BarcodeField().At(LabelSettings.Batch1Barcode.X, LabelSettings.Batch1Barcode.Y).SetBarcodeType(BarcodeType.Code128).SetFont(Fonts.A, FieldOrientation.Normal, 1).WithData(LabelData.Batch).Height(70).BarWidth(4),
                 ZplFactory.BarcodeField().At(LabelSettings.CoilSerialNumber1Barcode.X, LabelSettings.CoilSerialNumber1Barcode.Y).SetBarcodeType(BarcodeType.Code128).SetFont(Fonts.A, FieldOrientation.Normal, 1).WithData(LabelData.CoilSerialNumber).Height(40).BarWidth(2),

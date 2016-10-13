@@ -103,7 +103,6 @@ namespace LabelSettings
                     File.WriteAllText(saveFileDialog1.FileName, setting.ToXml());
                 }
 
-
             }
         }
 
@@ -290,6 +289,28 @@ namespace LabelSettings
             {
                 txtZplCode.Text = GetEuropeanZpl();
             }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (_labelType == LabelType.European)
+            {
+                var label = GetEuropeanZpl();
+                var labelService = new ZplLabelEuropeanService();
+                labelService.Print(label);
+
+            }
+
+            if (_labelType == LabelType.American)
+            {
+                var label = GetAmericanZpl();
+                var labelService = new ZplLabelAmericanService();
+                labelService.Print(label);
+
+            }
+
+
+
         }
     }
 
