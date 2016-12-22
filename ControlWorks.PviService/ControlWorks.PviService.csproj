@@ -39,6 +39,10 @@
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -50,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CpuInfo.cs" />
+    <Compile Include="FileAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PVI Service\Cpu Manager.cs" />
     <Compile Include="PVI Service\IPviService.cs" />
@@ -62,6 +68,7 @@
     <Compile Include="PviApplication.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +79,10 @@
     <ProjectReference Include="..\ControlWorks.PrintService\ControlWorks.PrintService.csproj">
       <Project>{99427184-cc6b-4c05-9619-ee2186845096}</Project>
       <Name>ControlWorks.PrintService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControlWorks.Services.Configuration\ControlWorks.Services.Configuration.csproj">
+      <Project>{f458f485-1a0b-4d28-a625-1dd6938708cd}</Project>
+      <Name>ControlWorks.Services.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\ControlWorks.Utils.Logging\ControlWorks.Utils.Logging.csproj">
       <Project>{0a46e292-15ed-4884-bcff-aed38d840b4e}</Project>

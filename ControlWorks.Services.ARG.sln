@@ -32,6 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{52033B34-52A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabelSettings", "LabelSettings\LabelSettings.csproj", "{067E16ED-B298-47D1-97DB-0BD682B563EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlWorks.Services.Configuration", "ControlWorks.Services.Configuration\ControlWorks.Services.Configuration.csproj", "{F458F485-1A0B-4D28-A625-1DD6938708CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,6 +116,12 @@ Global
 		{067E16ED-B298-47D1-97DB-0BD682B563EB}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
 		{067E16ED-B298-47D1-97DB-0BD682B563EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{067E16ED-B298-47D1-97DB-0BD682B563EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F458F485-1A0B-4D28-A625-1DD6938708CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F458F485-1A0B-4D28-A625-1DD6938708CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F458F485-1A0B-4D28-A625-1DD6938708CD}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{F458F485-1A0B-4D28-A625-1DD6938708CD}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
+		{F458F485-1A0B-4D28-A625-1DD6938708CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F458F485-1A0B-4D28-A625-1DD6938708CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

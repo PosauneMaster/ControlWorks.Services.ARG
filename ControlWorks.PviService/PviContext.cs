@@ -1,4 +1,6 @@
 ﻿using BR.AN.PviServices;
+using ControlWorks.Services.Configuration;
+using ControlWorks.Services.Pvi;
 using ControlWorks.Utils.Logging;
 using System;
 using System.Windows.Forms;
@@ -15,6 +17,7 @@ namespace ControlWorks.PviService
         private bool _shouldReconnectCpu = true;
         private bool _disposed = false;
 
+        public CpuManager CpuService { get; private set; }
 
         public bool IsPviConnected
         {
@@ -66,14 +69,14 @@ namespace ControlWorks.PviService
             pviService.ConnectPVIService();
         }
 
-        private void ConnectCpu(Service service)
-        {
-            var cpuManager = new CpuManager(service, _logger);
-            cpuManager.CpuConnected += CpuManager_CpuConnected;
-            cpuManager.CpuDisconnected += CpuManager_CpuDisconnected;
-            cpuManager.CpuError += CpuManager_CpuError;
-            cpuManager.ConnectCpu(Utils.ConfigurationProvider.CpuName, Utils.ConfigurationProvider.CpuStationId);
-        }
+        //private void ConnectCpu(Service service)
+        //{
+        //    var cpuManager = new CpuManager(service, _logger);
+        //    cpuManager.CpuConnected += CpuManager_CpuConnected;
+        //    cpuManager.CpuDisconnected += CpuManager_CpuDisconnected;
+        //    cpuManager.CpuError += CpuManager_CpuError;
+        //    cpuManager.ConnectCpu(Utils.ConfigurationProvider.CpuName, Utils.ConfigurationProvider.CpuStationId);
+        //}
 
         public void ConnectVariables(Cpu cpu)
         {
@@ -94,7 +97,6 @@ namespace ControlWorks.PviService
                     if (_shouldReconnectCpu)
                     {
                         _shouldReconnectCpu = false;
-                        ConnectCpu(_service);
                     }
                 }
             }
@@ -112,7 +114,6 @@ namespace ControlWorks.PviService
                 if (_shouldReconnectCpu)
                 {
                     _shouldReconnectCpu = false;
-                    ConnectCpu(_service);
                 }
             }
         }
@@ -140,6 +141,27 @@ namespace ControlWorks.PviService
 
         private void PviService_ServiceConnected(object sender, BR.AN.PviServices.PviEventArgs e)
         {
+            _service = sender as Service;
+            var settingFile = ConfigurationProvider.CpuSettingsFile;
+            var collection = new CpuInfoCollection();
+
+            try
+            {
+                collection.Open(settingFile);
+                CpuService = new CpuManager(_service, _logger);
+                //CpuService.CpusLoaded += CpuService_CpusLoaded;
+                CpuService.LoadCpuCollection(collection.GetAll());
+
+
+            }
+            catch (System.Exception ex)
+            {
+                _logger.Log(new LogEntry(LoggingEventType.Error, "Error Loading Cpu Settings", ex));
+            }
+
+
+            CpuService = new CpuManager(_service, _logger);
+
             _logger.LogInfo("PviService_ServiceConnected");
             _service = sender as Service;
             ConnectCpu(_service);

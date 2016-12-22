@@ -1,4 +1,5 @@
 ﻿using BR.AN.PviServices;
+using ControlWorks.Services.Pvi;
 using ControlWorks.Utils.Logging;
 using System;
 using System.Collections.Generic;
@@ -29,11 +30,19 @@ namespace ControlWorks.PviService
             Logger = logger;
         }
 
-        public void ConnectCpu(string cpuName, int destinationStation)
+        public void LoadCpuCollection(IList<CpuInfo> cpuCollection)
+        {
+            foreach (var cpu in cpuCollection)
+            {
+                ConnectCpu(cpu.Name, cpu.IpAddress);
+            }
+        }
+
+        public void ConnectCpu(string cpuName, string ipAddress)
         {
             try
             {
-                Logger.LogInfo(String.Format("CpuManager.ConnectCpu cpuName:{0}, destinationStation:{1}", cpuName, destinationStation));
+                Logger.LogInfo(String.Format("CpuManager.ConnectCpu cpuName:{0}, ipAddress:{1}", cpuName, ipAddress));
                 Cpu cpu = null;
                 if (_service.Cpus.ContainsKey(cpuName))
                 {
@@ -46,7 +55,7 @@ namespace ControlWorks.PviService
 
                 cpu.Connection.DeviceType = DeviceType.TcpIp;
                 cpu.Connection.TcpIp.SourceStation = this.m_SourceStationId;
-                cpu.Connection.TcpIp.DestinationStation = (byte)destinationStation;
+                cpu.Connection.TcpIp.DestinationIpAddress = ipAddress;
 
                 cpu.Connected += cpu_Connected;
                 cpu.Error += cpu_Error;
