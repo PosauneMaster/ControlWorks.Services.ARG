@@ -69,15 +69,6 @@ namespace ControlWorks.PviService
             pviService.ConnectPVIService();
         }
 
-        //private void ConnectCpu(Service service)
-        //{
-        //    var cpuManager = new CpuManager(service, _logger);
-        //    cpuManager.CpuConnected += CpuManager_CpuConnected;
-        //    cpuManager.CpuDisconnected += CpuManager_CpuDisconnected;
-        //    cpuManager.CpuError += CpuManager_CpuError;
-        //    cpuManager.ConnectCpu(Utils.ConfigurationProvider.CpuName, Utils.ConfigurationProvider.CpuStationId);
-        //}
-
         public void ConnectVariables(Cpu cpu)
         {
             var variableManager = new VariableManager(_logger);
@@ -149,9 +140,7 @@ namespace ControlWorks.PviService
             {
                 collection.Open(settingFile);
                 CpuService = new CpuManager(_service, _logger);
-                //CpuService.CpusLoaded += CpuService_CpusLoaded;
                 CpuService.LoadCpuCollection(collection.GetAll());
-
 
             }
             catch (System.Exception ex)
@@ -164,7 +153,7 @@ namespace ControlWorks.PviService
 
             _logger.LogInfo("PviService_ServiceConnected");
             _service = sender as Service;
-            ConnectCpu(_service);
+            //ConnectCpu(_service);
         }
 
         protected override void Dispose(bool disposing)
