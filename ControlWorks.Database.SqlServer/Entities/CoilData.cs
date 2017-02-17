@@ -60,5 +60,9 @@ namespace ControlWorks.Database.SqlServer
         [Column(TypeName = "smalldatetime")]
         public DateTime? LabInspectDate { get; set; }
         public int? RollNumber { get; set; }
+        [StringLength(50)]
+        public string IpAddress { get; set; }
+        [StringLength(50)]
+        public string CpuName { get; set; }
     }
 }

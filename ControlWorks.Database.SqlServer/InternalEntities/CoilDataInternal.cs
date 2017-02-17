@@ -26,6 +26,8 @@ namespace ControlWorks.Database.SqlServer
         public string LabInspector { get; set; }
         public DateTime? LabInspectDate { get; set; }
         public int? RollNumber { get; set; }
+        public string IpAddress { get; set; }
+        public string CpuName { get; set; }
 
         public void SetLabInspectDate(string inspectDate)
         {

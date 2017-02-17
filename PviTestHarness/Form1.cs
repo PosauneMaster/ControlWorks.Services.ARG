@@ -45,6 +45,8 @@ namespace PviTestHarness
 
                     if (coildata != null)
                     {
+                        coildata.CoilData.IpAddress = $"Testing IP {DateTime.Now.ToString("yyyyMMddHHmmss")}";
+                        coildata.CoilData.CpuName = $"Testing Machine Name {DateTime.Now.ToString("yyyyMMddHHmmss")}";
                         var processor = new CoilInfoProcessor(_logger);
                         processor.ProcessAsync(coildata);
                     }

@@ -5,12 +5,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ControlWorks.PviService
 {
     public class CpuManager : IDisposable
     {
+        private static AutoResetEvent _resetEvent = new AutoResetEvent(false);
+
+
         private readonly byte m_SourceStationId = 100;
 
         public event EventHandler<PviEventArgs> CpuConnected;
@@ -34,6 +38,7 @@ namespace ControlWorks.PviService
         {
             foreach (var cpu in cpuCollection)
             {
+                _resetEvent.WaitOne(5000);
                 ConnectCpu(cpu.Name, cpu.IpAddress);
             }
         }
@@ -60,6 +65,7 @@ namespace ControlWorks.PviService
                 cpu.Connected += cpu_Connected;
                 cpu.Error += cpu_Error;
                 cpu.Disconnected += cpu_Disconnected;
+                cpu.UserData = $"IpAddress:{ipAddress},CpuName:{cpuName}";
 
 
                 cpu.Connect();
@@ -88,12 +94,17 @@ namespace ControlWorks.PviService
             Cpu = cpu;
             if (cpu != null)
             {
+                var variableManager = new VariableManager(Logger);
+                variableManager.LoadVariables(cpu);
+
                 EventHandler<PviEventArgs> temp = CpuConnected;
                 if (temp != null)
                 {
                     temp(this, e);
                 }
             }
+
+            _resetEvent.Set();
         }
 
         private void cpu_Disconnected(object sender, PviEventArgs e)
@@ -118,6 +129,8 @@ namespace ControlWorks.PviService
                     temp(sender, e);
                 }
             }
+
+            _resetEvent.Set();
         }
 
         private void cpu_Error(object sender, PviEventArgs e)
@@ -141,6 +154,8 @@ namespace ControlWorks.PviService
                     temp(sender, e);
                 }
             }
+
+            _resetEvent.Set();
         }
 
         #region Mock Events

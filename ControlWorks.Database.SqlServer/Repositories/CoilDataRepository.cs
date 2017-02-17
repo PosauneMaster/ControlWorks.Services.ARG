@@ -46,7 +46,9 @@ namespace ControlWorks.Database.SqlServer
                 CoilSnNumber = data.Coil_SN_Number,
                 LabInspector = data.LabInspector,
                 LabInspectDate = data.LabInspectDate,
-                RollNumber = data.RollNumber
+                RollNumber = data.RollNumber,
+                IpAddress = data.IpAddress,
+                CpuName = data.CpuName               
             };
 
             return entity;

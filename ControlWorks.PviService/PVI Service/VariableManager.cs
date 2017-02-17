@@ -157,6 +157,9 @@ namespace ControlWorks.PviService
             var coilData = new CoilDataInternal();
             var lengthData = new LengthDataInternal();
 
+            var ipAddress = String.Empty;
+            var cpuName = String.Empty;
+
             coilData.SetProperty(nameof(coilData.ToleranceMinus), Variables["CoilData.ToleranceMinus"].Value);
             coilData.SetProperty(nameof(coilData.TolerancePlus), Variables["CoilData.TolerancePlus"].Value);
             coilData.SetProperty(nameof(coilData.CalibrationDate), Variables["CoilData.CalibrationDate"].Value);
@@ -177,6 +180,19 @@ namespace ControlWorks.PviService
             coilData.SetProperty(nameof(coilData.Coil_SN_Number), Variables["CoilData.Coil_SN_Number"].Value);
             coilData.SetProperty(nameof(coilData.LabInspector), Variables["CoilData.LabInspector"].Value);
             coilData.SetProperty(nameof(coilData.RollNumber), Variables["CoilData.RollNumber"].Value);
+
+            if (Variables["CoilData.Coil_SN_Number"].UserData != null)
+            {
+                string[] data = Variables["CoilData.Coil_SN_Number"].UserData.ToString().Split(new char[] { ',' });
+                if (data.Length == 2)
+                {
+                    ipAddress = data[0].Replace("IpAddress:", String.Empty);
+                    cpuName = data[1].Replace("CpuName:", String.Empty); ;
+                }
+            }
+
+            coilData.SetProperty(nameof(coilData.IpAddress), ipAddress);
+            coilData.SetProperty(nameof(coilData.CpuName), cpuName);
 
             coilData.SetLabInspectDate(Variables["CoilData.LabInspectDate"].Value);
             coilData.BatchRunTimestamp = DateTime.Now;
@@ -253,12 +269,7 @@ namespace ControlWorks.PviService
                 var repo = new RmrDataRepository(new CoilInfoContext());
                 data.RmR = repo.GetRmR(data.MaterialType);
 
-                int labelType = 0;
-
-                if(Variables["labelType"].Value != null)
-                {
-                    labelType = Variables["labelType"].Value.ToInt32(CultureInfo.CurrentCulture);
-                }
+                int labelType = GetLabelType(Variables);
 
                 var labelService = LabelServiceFactory.Get(labelType, data, _logger);
                 labelService.SendToPrinter();
@@ -270,8 +281,31 @@ namespace ControlWorks.PviService
             }
         }
 
+        private int GetLabelType(VariableCollection variables)
+        {
+            var labelType = 0;
+            try
+            {
+                if (Variables["labelType"].Value != null)
+                {
+                    labelType = Variables["labelType"].Value.ToInt32(CultureInfo.CurrentCulture);
+                }
+
+                _logger.LogInfo($"Found label type of {labelType}");
+            }
+            catch(System.Exception ex)
+            {
+                _logger.LogError("Error getting label type return default of 0");
+                _logger.LogError(ex);
+            }
+
+            return labelType;
+        }
+
         private void OnVariableChanged(Variable variable)
         {
+
+
             if (variable == null)
             {
                 return;

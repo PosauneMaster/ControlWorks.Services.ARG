@@ -12,8 +12,28 @@ namespace ControlWorks.PviService
 
         public event EventHandler<EventArgs> ApplicationDisconnected;
 
-        public bool IsPviConnected { get { return _context.IsPviConnected; } }
-        public bool IsCpuConnected { get { return _context.IsCpuConnected; } }
+        public bool IsPviConnected
+        {
+            get
+            {
+                if (_context != null)
+                {
+                    return _context.IsPviConnected;
+                }
+                return false;
+            }
+        }
+        public bool IsCpuConnected
+        {
+            get
+            {
+                if (_context != null)
+                {
+                    return _context.IsCpuConnected;
+                }
+                return false;
+            }
+        }
 
         private Timer t = new Timer();
 

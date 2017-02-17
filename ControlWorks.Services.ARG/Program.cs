@@ -11,8 +11,8 @@ namespace ControlWorks.Services
     {
         static void Main(string[] args)
         {
-            const string name = "ControlWorksCoilDataService";
-            const string description = "Control Works communication service";
+            const string name = "ControlWorksCoilDataServiceArg";
+            const string description = "Control Works communication service for ARG";
 
             try
             {
