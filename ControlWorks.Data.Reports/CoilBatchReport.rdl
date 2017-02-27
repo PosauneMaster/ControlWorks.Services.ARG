@@ -67,7 +67,6 @@
   FROM [CoilInfo].[dbo].[CoilData] cd
   JOIN [CoilInfo].[dbo].[LengthData] ld ON ld.[CoilDataId] = cd.[CoilDataId]
   WHERE [BatchRunTimestamp] &gt;= @beginDate and [BatchRunTimestamp] &lt;= @finishDate
-
 </CommandText>
       </Query>
       <Fields>

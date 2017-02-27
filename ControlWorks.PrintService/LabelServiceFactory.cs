@@ -15,7 +15,7 @@ namespace ControlWorks.PrintService
 
                 var labelService = new ZplLabelAmericanService(data, logger);
 
-                labelService.LabelSettings = GetSettings<LabelSettingsAmerican>();
+                labelService.LabelSettings = GetSettings<LabelSettingsAmerican>(ConfigurationProvider.AmericanLabelSettings);
 
                 return labelService;
             }
@@ -23,7 +23,7 @@ namespace ControlWorks.PrintService
             {
                 var labelService = new ZplLabelEuropeanService(data, logger);
 
-                labelService.LabelSettings = GetSettings<LabelSettingsEuropean>();
+                labelService.LabelSettings = GetSettings<LabelSettingsEuropean>(ConfigurationProvider.EuropeanLabelSettings);
 
                 return labelService;
             }
@@ -31,10 +31,10 @@ namespace ControlWorks.PrintService
             return null;
         }
 
-        private static T GetSettings<T>()
+        private static T GetSettings<T>(string path)
         {
             var serializer = new XmlSerializer(typeof(T));
-            var reader = new StreamReader(ConfigurationProvider.AmericanLabelSettings);
+            var reader = new StreamReader(path);
 
             var settings = (T)serializer.Deserialize(reader);
 
