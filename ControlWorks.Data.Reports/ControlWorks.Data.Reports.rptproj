@@ -21,6 +21,10 @@
       <Name>TMS Summary Report 1.rdl</Name>
       <FullPath>TMS Summary Report 1.rdl</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>CoilBatchReport_Expanded.rdl</Name>
+      <FullPath>CoilBatchReport_Expanded.rdl</FullPath>
+    </ProjectItem>
   </Reports>
   <Configurations>
     <Configuration>
