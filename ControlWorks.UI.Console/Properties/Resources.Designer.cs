@@ -19,7 +19,7 @@ namespace ControlWorks.UI.Console.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -71,8 +71,8 @@ namespace ControlWorks.UI.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ToleranceMinus,TolerancePlus,CalibrationDate,OriginalSQYards,CoilWidth,CoilNumber,Date,ChangeNumber,RollNumber,Inspector1,BatchNumber1,MaterialType1,OvenPosition,MaterialThk,Length,Data
-        ///-0.05,0.05,12/25/2015,12,25,75,6/12/2016,TestChangeNumber1,5,Inspector1,BatchNumber1,MaterialType1,13,0.052,22.55,&quot;0.047,0.055,0.049,0.049,0.043,0.057,0.048,0.049,0.044,0.048,0.051,0.049,0.047,0.051,0.046,0.057,0.051,0.043,0.057,0.046,0.048,0.055,0.051,0.049,0.054,0.048,0.057,0.041,0.058,0.046,0.048,0.054,0.046,0.053,0.048, [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to ToleranceMinus,TolerancePlus,CalibrationDate,OriginalSqYards,CoilWidth,CoilNumber,CreatedDate,ChangeNumber,RollNumber,Inspector,BatchNumber,MaterialType,OvenPos,MaterialThk,Length,Data
+        ///-0.05,0.05,12/25/2015,12,25,75,6/12/2016,TestChangeNumber1,1,Inspector1,BatchNumber1,MaterialType1,13,0.052,22.55,&quot;0.047,0.055,0.049,0.049,0.043,0.057,0.048,0.049,0.044,0.048,0.051,0.049,0.047,0.051,0.046,0.057,0.051,0.043,0.057,0.046,0.048,0.055,0.051,0.049,0.054,0.048,0.057,0.041,0.058,0.046,0.048,0.054,0.046,0.053,0.048,0 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TestData {
             get {
