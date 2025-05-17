@@ -1,23 +1,18 @@
-﻿using ControlWorks.Utils.Logging;
-using log4net;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ControlWorks.Database.SqlServer
 {
     public class CoilInfoProcessor
     {
-        private ILogger Log { get; set; }
-        public CoilInfoProcessor(ILogger logger)
+        public CoilInfoProcessor()
         {
-            Log = logger;
         }
 
         private void Process(CoilInfo coilInfo)
@@ -39,14 +34,14 @@ namespace ControlWorks.Database.SqlServer
 
                 var fileName = String.Format("CoilData.{0}.{1}.xml", coilInfo.CoilData.BatchNumber, DateTime.Now.ToString("yyyyMMddHHmmss"));
                 var filePath = Path.Combine(directoryPath, fileName);
-                Log.LogInfo(String.Format("Saving coilInfo to file {0}", filePath));
+                Trace.TraceInformation($"Saving coilInfo to file {filePath}");
                 File.WriteAllText(filePath, coilInfo.Serialize());
 
                 return true;
             }
             catch(Exception ex)
             {
-                Log.LogError(ex);
+                Trace.TraceError(ex.ToString());;
                 return false;
             }
         }
@@ -70,7 +65,7 @@ namespace ControlWorks.Database.SqlServer
         {
             try
             {
-                Log.LogInfo(String.Format("Saving coilInfo to Db. BatchNumber={0}", coilInfo.CoilData.BatchNumber));
+                Trace.TraceInformation($"Saving coilInfo to Db. BatchNumber={coilInfo.CoilData.BatchNumber}");
 
                 using (var context = new CoilInfoContext())
                 {
@@ -99,14 +94,13 @@ namespace ControlWorks.Database.SqlServer
                         rs += "<br />" + string.Format("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-                Log.LogError("EntityValidationErrors");
-                Log.LogError(e);
+                Trace.TraceError(e.ToString());
 
                 throw new Exception(rs);
             }
             catch (Exception ex)
             {
-                Log.LogError(ex);
+                Trace.TraceError(ex.ToString());
             }
 
             return true;

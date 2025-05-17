@@ -118,10 +118,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ControlWorks.Services.WcfServices\ControlWorks.Services.WcfServices.csproj">
-      <Project>{69074f6f-60a4-444b-a704-3ae1098cf50f}</Project>
-      <Name>ControlWorks.Services.WcfServices</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ControlWorks.Utils.Logging\ControlWorks.Utils.Logging.csproj">
       <Project>{0a46e292-15ed-4884-bcff-aed38d840b4e}</Project>
       <Name>ControlWorks.Utils.Logging</Name>

@@ -1,5 +1,4 @@
 ﻿using ControlWorks.PviService;
-using ControlWorks.Services.WcfServices;
 using ControlWorks.Utils.Logging;
 using System;
 using System.Threading.Tasks;

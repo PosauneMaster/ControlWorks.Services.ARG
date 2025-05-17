@@ -87,10 +87,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ControlWorks.PrintService\ControlWorks.PrintService.csproj">
-      <Project>{99427184-cc6b-4c05-9619-ee2186845096}</Project>
-      <Name>ControlWorks.PrintService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ControlWorks.Utils.Logging\ControlWorks.Utils.Logging.csproj">
       <Project>{0a46e292-15ed-4884-bcff-aed38d840b4e}</Project>
       <Name>ControlWorks.Utils.Logging</Name>
