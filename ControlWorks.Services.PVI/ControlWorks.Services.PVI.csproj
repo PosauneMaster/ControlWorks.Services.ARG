@@ -71,11 +71,16 @@
     <Compile Include="Variables\VariableDetails.cs" />
     <Compile Include="Variables\VariableManager.cs" />
     <Compile Include="Variables\VariableResponse.cs" />
+    <Compile Include="Variables\TekniplexVariableService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ControlWorks.Common\ControlWorks.Common.csproj">
       <Project>{a42c2199-2dca-441a-84b0-72854681bfcc}</Project>
       <Name>ControlWorks.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControlWorks.Database.SqlServer\ControlWorks.Database.SqlServer.csproj">
+      <Project>{3d15ac8c-f75d-40d3-88a9-21ff07dd0bc9}</Project>
+      <Name>ControlWorks.Database.SqlServer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

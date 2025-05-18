@@ -7,8 +7,11 @@ namespace ControlWorks.Common
 {
     public static class Startup
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public static void Initialize()
         {
+            Logger.Info("Initialize");
             try
             {
                 if (!Directory.Exists(ConfigurationProvider.BaseDirectory))
@@ -21,11 +24,6 @@ namespace ControlWorks.Common
                 if (!Directory.Exists(ConfigurationProvider.SettingsDirectory))
                 {
                     Directory.CreateDirectory(ConfigurationProvider.SettingsDirectory);
-                }
-
-                if (!Directory.Exists(ConfigurationProvider.AirkanNetworkFolder))
-                {
-                    Directory.CreateDirectory(ConfigurationProvider.AirkanNetworkFolder);
                 }
 
                 Trace.TraceInformation(new string('*', 30));

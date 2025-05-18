@@ -329,7 +329,7 @@ namespace ControlWorks.Services.PVI.Pvi
 
             _variableManager = e.VariableManager;
 
-            Trace.Listeners.Remove("configConsoleListener");
+            //Trace.Listeners.Remove("configConsoleListener");
             Trace.TraceInformation(e.Message);
 
             if (_cpuManager == null)

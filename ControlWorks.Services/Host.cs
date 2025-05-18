@@ -15,7 +15,9 @@ namespace ControlWorks.Services
     {
         public void Start()
         {
-
+            var pviApp = new ControlWorks.Services.PVI.Pvi.PviAplication();
+            var factory = new TaskFactory();
+            factory.StartNew(() => pviApp.Connect(), TaskCreationOptions.LongRunning);
         }
 
         public void Stop()

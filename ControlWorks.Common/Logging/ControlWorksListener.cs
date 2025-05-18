@@ -37,7 +37,6 @@ namespace ControlWorks.Common.Logging
             }
             Logger.Info($"{source}|{format}");
 
-            //base.TraceEvent(eventCache, source, eventType, id, format, args);
         }
 
         public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string message)
@@ -50,8 +49,6 @@ namespace ControlWorks.Common.Logging
             {
                 Logger.Info($"{source}|{message}");
             }
-
-            //base.TraceEvent(eventCache, source, eventType, id, message);
         }
 
         public override void TraceTransfer(TraceEventCache eventCache, string source, int id, string message, Guid relatedActivityId)

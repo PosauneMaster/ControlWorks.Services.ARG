@@ -75,27 +75,11 @@ namespace ControlWorks.Common
             }
         }
 
-        public static bool RestApiTestMode
-        {
-            get
-            {
-                if (Boolean.TryParse(ConfigurationManager.AppSettings["RestApiTestMode"], out var result))
-                {
-                    return result;
-                }
-
-                return false;
-            }
-        }
         public static string LogFilePath => ConfigurationManager.AppSettings["LogFilePath"];
         public static string CpuSettings => ConfigurationManager.AppSettings["CpuSettings"];
         public static string VariableSettings => ConfigurationManager.AppSettings["VariableSettings"];
         public static string VariableTasks => ConfigurationManager.AppSettings["VariableTasks"];
-        public static string AirkanBartenderFolder => ConfigurationManager.AppSettings["AirkanBartenderFolder"];
-        public static string AirkanNetworkFolder => ConfigurationManager.AppSettings["AirkanNetworkFolder"];
-        public static string AirkanConnectionString =>
-            ConfigurationManager.ConnectionStrings["Airkan"].ConnectionString;
-
         public static string CpuConnectionDeviceType => ConfigurationManager.AppSettings["CpuConnectionDeviceType"];
+        public static int MaxSensorData => Int32.Parse(ConfigurationManager.AppSettings["MaxSensorData"]);
     }
 }
