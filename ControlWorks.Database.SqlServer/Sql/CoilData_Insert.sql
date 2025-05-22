@@ -1,7 +1,8 @@
 ﻿USE [CoilInfo]
 GO
 
-CREATE OR ALTER PROCEDURE [CoilInfo_Insert]
+
+CREATE OR ALTER PROCEDURE [dbo].[CoilData_Insert]
 (
 	@materialType nvarchar(30),
 	@materialThickness decimal(9,5),

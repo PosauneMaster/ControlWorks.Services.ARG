@@ -1,53 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace ControlWorks.Database.SqlServer
+namespace ControlWorks.Database.SqlServer.Repositories
 {
     public class LengthDataRepository : Repository<LengthData>
     {
-        public LengthDataRepository() { }
+        private readonly string _connectionString = Common.ConfigurationProvider.ConnectionString;
 
-        public LengthDataRepository(CoilInfoContext context) : base(context)
+        public async Task Insert(LengthData lengthData)
         {
-        }
-
-        public int Insert(int coilDataId, LengthDataInternal lengthData)
-        {
-            var entity = MapFromInternal(coilDataId, lengthData);
-            DbSet.Add(entity);
-            Context.SaveChanges();
-            return entity.CoilDataId;
-        }
-
-        private LengthData MapFromInternal(int coilDataId, LengthDataInternal data)
-        {
-            var entity = new LengthData
+            var insertCommand = "[dbo].[LengthData_Insert]";
+            try
             {
-                Good = data.Good,
-                Width = data.Width,
-                CoilDataId = coilDataId,
-                ThicknessScrap = data.ThicknessScrap,
-                ThicknessReclass = data.ThicknessReclass,
-                Blisters = data.Blisters,
-                Contamination = data.Contamination,
-                Gas = data.Gas,
-                Holes = data.Holes,
-                Lumps = data.Lumps,
-                PaperBreaks = data.PaperBreaks,
-                PaperSplice = data.PaperSplice,
-                Shiny = data.Shiny,
-                SlitterDefect = data.SlitterDefect,
-                TapeInCoil = data.TapeInCoil,
-                Wrinkles = data.Wrinkles,
-                Other = data.Other,
-                Salvage = data.Salvage,
-                LinearMeters = data.LinearMeters
-            };
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = insertCommand;
+                        command.CommandType = CommandType.StoredProcedure;
 
-            return entity;
+                        command.Parameters.AddWithValue("@coilDataId", lengthData.CoilDataId);
+                        command.Parameters.AddWithValue("@good", lengthData.Good);
+                        command.Parameters.AddWithValue("@thicknessScrap", lengthData.ThicknessScrap);
+                        command.Parameters.AddWithValue("@thicknessReclass", lengthData.ThicknessReclass);
+                        command.Parameters.AddWithValue("@blisters", lengthData.Blisters);
+                        command.Parameters.AddWithValue("@contamination", lengthData.Contamination);
+                        command.Parameters.AddWithValue("@gas", lengthData.Gas);
+                        command.Parameters.AddWithValue("@holes", lengthData.Holes);
+                        command.Parameters.AddWithValue("@lumps", lengthData.Lumps);
+                        command.Parameters.AddWithValue("@paperBreaks", lengthData.PaperBreaks);
+                        command.Parameters.AddWithValue("@paperSplice", lengthData.PaperSplice);
+                        command.Parameters.AddWithValue("@shiny", lengthData.Shiny);
+                        command.Parameters.AddWithValue("@slitterDefect", lengthData.SlitterDefect);
+                        command.Parameters.AddWithValue("@tapeInCoil", lengthData.TapeInCoil);
+                        command.Parameters.AddWithValue("@wrinkles", lengthData.Wrinkles);
+                        command.Parameters.AddWithValue("@width", lengthData.Width);
+                        command.Parameters.AddWithValue("@other", lengthData.Other);
+                        command.Parameters.AddWithValue("@salvage", lengthData.Salvage);
+                        command.Parameters.AddWithValue("@linearMeters", lengthData.LinearMeters);
+
+                        await command.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+            }
         }
     }
 }

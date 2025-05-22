@@ -51,7 +51,6 @@
     <Compile Include="InternalEntities\InternalBase.cs" />
     <Compile Include="InternalEntities\LengthDataInternal.cs" />
     <Compile Include="Entities\LengthData.cs" />
-    <Compile Include="Repositories\Class1.cs" />
     <Compile Include="Repositories\CoilDataRepository.cs" />
     <Compile Include="CoilInfo.cs" />
     <Compile Include="Entities\CoilData.cs" />
@@ -80,6 +79,8 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Sql\CoilData_Insert.sql" />
+    <Content Include="Sql\LengthData_Insert.sql" />
+    <Content Include="Sql\SensorData_Insert.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
