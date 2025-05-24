@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using ControlWorks.Database.SqlServer.InternalEntities;
 
 namespace ControlWorks.Database.SqlServer
 {

@@ -126,6 +126,7 @@ namespace ControlWorks.Services.PVI.Variables
             variable.UserData = cpu.UserData;
             variable.ValueChanged += new VariableEventHandler(this.v_ValueChanged);
             variable.Connected += new PviEventHandler(this.v_Connected);
+
             variable.Error += Variable_Error;
             variable.Active = true;
             variable.Connect();
@@ -143,7 +144,7 @@ namespace ControlWorks.Services.PVI.Variables
             OnVariableChanged(variable);
         }
 
-        private void ProcessVariables()
+        private void ProcessVariables(Cpu cpu)
         {
             var coilInfo = new CoilInfo();
             var coilData = new CoilDataInternal();
@@ -233,7 +234,7 @@ namespace ControlWorks.Services.PVI.Variables
                 if (btnSendProductionData)
                 {
                     Trace.TraceInformation("Recieved btnSendProductionData=true.  Begin Processing data");
-                    ProcessVariables();
+                    ProcessVariables(variable.);
 
                     Variables["btnSendProductionData"].WriteValueAutomatic = false;
                     Variables["btnSendProductionData"].Value.Assign((object)false);
@@ -248,7 +249,9 @@ namespace ControlWorks.Services.PVI.Variables
         {
             Variable variable = sender as Variable;
 
-            if (variable != null && _variableStateLookup.TryGetValue(variable.Name, out var value))
+            Trace.TraceInformation($"Variable connect: {variable.Name}, IsConnected: {variable.IsConnected}");
+
+            if (_variableStateLookup.TryGetValue(variable.Name, out var value))
             {
                 _currentState = _currentState | value;
             }

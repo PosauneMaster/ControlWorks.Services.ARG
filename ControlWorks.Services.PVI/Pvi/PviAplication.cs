@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Net.Mime;
 using System.Text;
 using System.Windows.Forms;
+
 using BR.AN.PviServices;
-using BR.AN.PviServices.EventDescription;
 
 using ControlWorks.Common;
 using ControlWorks.Services.PVI.Impl;
@@ -406,8 +405,9 @@ namespace ControlWorks.Services.PVI.Pvi
             {
                 Trace.TraceInformation(e.Message);
 
-                System.Threading.Tasks.Task.Run(() => _taskLoader.LoadTasks(e.Cpu));
+                var tekService = new TekniplexVariableService();
 
+                System.Threading.Tasks.Task.Run(() => tekService.LoadVariables(e.Cpu));
             }
         }
 

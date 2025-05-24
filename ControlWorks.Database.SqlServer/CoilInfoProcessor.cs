@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
+using ControlWorks.Database.SqlServer.Repositories;
 
 namespace ControlWorks.Database.SqlServer
 {
@@ -39,9 +40,9 @@ namespace ControlWorks.Database.SqlServer
 
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Trace.TraceError(ex.ToString());;
+                Trace.TraceError(ex.ToString()); ;
                 return false;
             }
         }
@@ -61,26 +62,23 @@ namespace ControlWorks.Database.SqlServer
             return currentPath;
         }
 
-        private bool SaveToDb(CoilInfo coilInfo)
+        private async Task SaveToDb(CoilInfo coilInfo)
         {
             try
             {
                 Trace.TraceInformation($"Saving coilInfo to Db. BatchNumber={coilInfo.CoilData.BatchNumber}");
 
-                using (var context = new CoilInfoContext())
-                {
-                    var coilDataRepository = new CoilDataRepository(context);
-                    var lengthRepository = new LengthDataRepository(context);
-                    var sensorDataRepository = new SensorDataRepository(context);
-                    var sensorReportRepository = new SensorReportRepository(context);
+                var coilDataRepository = new CoilDataRepository();
+                var lengthRepository = new LengthDataRepository();
+                var sensorDataRepository = new SensorDataRepository();
 
-                    var id = coilDataRepository.Insert(coilInfo.CoilData);
-                    lengthRepository.Insert(id, coilInfo.LengthData);
-                    sensorDataRepository.Insert(id, coilInfo.SensorData);
+                await coilDataRepository.Insert(coilInfo.CoilData, coilInfo.);
+                await lengthRepository.Insert(id, coilInfo.LengthData);
+                await sensorDataRepository.Insert(id, coilInfo.SensorData);
 
-                    var sensorReport = CreateSensorRepotData(coilInfo);
-                    sensorReportRepository.Insert(id, sensorReport);
-                }
+                var sensorReport = CreateSensorRepotData(coilInfo);
+                sensorReportRepository.Insert(id, sensorReport);
+
             }
             catch (DbEntityValidationException e)
             {

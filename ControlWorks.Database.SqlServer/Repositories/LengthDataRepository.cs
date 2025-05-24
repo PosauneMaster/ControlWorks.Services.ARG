@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ControlWorks.Database.SqlServer.Repositories
 {
-    public class LengthDataRepository : Repository<LengthData>
+    public class LengthDataRepository
     {
         private readonly string _connectionString = Common.ConfigurationProvider.ConnectionString;
 
-        public async Task Insert(LengthData lengthData)
+        public async Task Insert(LengthDataInternal lengthData, int coilDataId)
         {
             var insertCommand = "[dbo].[LengthData_Insert]";
             try
@@ -23,7 +23,7 @@ namespace ControlWorks.Database.SqlServer.Repositories
                         command.CommandText = insertCommand;
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@coilDataId", lengthData.CoilDataId);
+                        command.Parameters.AddWithValue("@coilDataId", coilDataId);
                         command.Parameters.AddWithValue("@good", lengthData.Good);
                         command.Parameters.AddWithValue("@thicknessScrap", lengthData.ThicknessScrap);
                         command.Parameters.AddWithValue("@thicknessReclass", lengthData.ThicknessReclass);

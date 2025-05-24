@@ -45,7 +45,7 @@ namespace ControlWorks.Database.SqlServer.Repositories
                         command.Parameters.AddWithValue("@labInspector", coilData.LabInspector);
                         command.Parameters.AddWithValue("@rollNumber", coilData.RollNumber);
                         command.Parameters.AddWithValue("@labInspectDate", coilData.LabInspectDate);
-                        command.Parameters.AddWithValue("@ipAddress", ipAddress);
+                        command.Parameters.AddWithValue("@ipAddress", coilData);
                         command.Parameters.AddWithValue("@cpuName", cpuName);
 
                         await command.ExecuteNonQueryAsync();
