@@ -122,7 +122,6 @@ namespace ControlWorks.Services.PVI.Impl
                 _cpuInfoLookup.Add(cpuInfo.Name, cpuInfo);
             }
 
-            Cpu cpu = null;
             if (_service.Cpus.ContainsKey(cpuInfo.Name))
             {
                 DisconnectCpu(cpuInfo);

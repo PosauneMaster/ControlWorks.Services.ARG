@@ -23,7 +23,6 @@ namespace ControlWorks.Services.PVI.Panel
     public class CpuInfoCollection : ICpuInfoCollection
     {
         private static readonly AutoResetEvent CpuInfoEvent = new AutoResetEvent(true);
-        private readonly string _cpuSettingsName = "CpuSettings";
 
         public CpuInfoCollection()
         {

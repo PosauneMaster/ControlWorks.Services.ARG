@@ -1,4 +1,4 @@
-﻿namespace ControlWorks.Database.SqlServer
+﻿namespace ControlWorks.Database.SqlServer.InternalEntities
 {
     public class LengthDataInternal : InternalBase
     {

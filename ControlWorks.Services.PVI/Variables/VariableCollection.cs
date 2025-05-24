@@ -81,7 +81,6 @@ namespace ControlWorks.Services.PVI.Variables
     public class VariableInfoCollection : IVariableInfoCollection
     {
         private static readonly AutoResetEvent VariableInfoEvent = new AutoResetEvent(true);
-        private readonly string _variableSettingsName = "VariableSettings";
 
         public VariableInfoCollection()
         {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ControlWorks.Database.SqlServer
+namespace ControlWorks.Database.SqlServer.InternalEntities
 {
     public class InternalBase
     {

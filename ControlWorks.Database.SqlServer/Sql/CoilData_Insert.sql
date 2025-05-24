@@ -57,6 +57,7 @@ BEGIN
 	 ,[LabInspectDate] 
 	 ,[IpAddress] 
 	 ,[CpuName]) 
+	 OUTPUT INSERTED.CoilDataId
  VALUES 
  ( 
 	  @materialType 

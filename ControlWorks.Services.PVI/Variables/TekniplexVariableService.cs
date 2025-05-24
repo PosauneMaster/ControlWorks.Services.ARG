@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 using BR.AN.PviServices;
 
 using ControlWorks.Database.SqlServer;
+using ControlWorks.Database.SqlServer.InternalEntities;
 
 namespace ControlWorks.Services.PVI.Variables
 {
@@ -146,7 +147,11 @@ namespace ControlWorks.Services.PVI.Variables
 
         private void ProcessVariables(Cpu cpu)
         {
-            var coilInfo = new CoilInfo();
+            var coilInfo = new CoilInfo
+            {
+                IPAddress = cpu == null ? String.Empty : cpu.Connection.TcpIp.DestinationIpAddress,
+                CpuName = cpu == null ? String.Empty : cpu.Name
+            };
             var coilData = new CoilDataInternal();
             var lengthData = new LengthDataInternal();
 
@@ -213,19 +218,21 @@ namespace ControlWorks.Services.PVI.Variables
                 coilInfo.AddSensorData(sensor);
             }
 
-            if (coilInfo != null)
-            {
-                var processor = new CoilInfoProcessor();
-                processor.ProcessAsync(coilInfo);
-            }
+            var processor = new CoilInfoProcessor();
+            processor.ProcessAsync(coilInfo);
+
         }
 
         private void OnVariableChanged(Variable variable)
         {
+
             if (variable == null)
             {
                 return;
             }
+
+            Cpu cpu = variable.Parent as Cpu;
+
 
             if (variable.Name == "btnSendProductionData")
             {
@@ -234,7 +241,7 @@ namespace ControlWorks.Services.PVI.Variables
                 if (btnSendProductionData)
                 {
                     Trace.TraceInformation("Recieved btnSendProductionData=true.  Begin Processing data");
-                    ProcessVariables(variable.);
+                    ProcessVariables(cpu);
 
                     Variables["btnSendProductionData"].WriteValueAutomatic = false;
                     Variables["btnSendProductionData"].Value.Assign((object)false);

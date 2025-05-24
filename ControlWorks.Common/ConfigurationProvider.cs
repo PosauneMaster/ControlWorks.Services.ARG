@@ -82,5 +82,7 @@ namespace ControlWorks.Common
         public static string CpuConnectionDeviceType => ConfigurationManager.AppSettings["CpuConnectionDeviceType"];
         public static int MaxSensorData => Int32.Parse(ConfigurationManager.AppSettings["MaxSensorData"]);
         public static string ConnectionString => ConfigurationManager.ConnectionStrings["Tekniplex"].ConnectionString;
+        public static string CoilInfoFileDirectory => ConfigurationManager.ConnectionStrings["CoilInfoFileDirectory"].ConnectionString;
+        
     }
 }

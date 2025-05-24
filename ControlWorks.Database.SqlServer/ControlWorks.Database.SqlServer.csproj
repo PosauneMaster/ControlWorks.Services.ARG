@@ -50,19 +50,12 @@
     <Compile Include="CoilInfoProcessor.cs" />
     <Compile Include="InternalEntities\InternalBase.cs" />
     <Compile Include="InternalEntities\LengthDataInternal.cs" />
-    <Compile Include="Entities\LengthData.cs" />
     <Compile Include="Repositories\CoilDataRepository.cs" />
     <Compile Include="CoilInfo.cs" />
-    <Compile Include="Entities\CoilData.cs" />
-    <Compile Include="CoilInfoContext.cs" />
     <Compile Include="Repositories\LengthDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\SensorData.cs" />
-    <Compile Include="Entities\SensorReport.cs" />
     <Compile Include="Repositories\SensorDataRepository.cs" />
     <Compile Include="InternalEntities\SensorDataInternal.cs" />
-    <Compile Include="InternalEntities\SensorReportInternal.cs" />
-    <Compile Include="Entities\RmrData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

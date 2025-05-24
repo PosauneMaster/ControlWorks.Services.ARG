@@ -1,34 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
+using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
+using ControlWorks.Common;
 using ControlWorks.Database.SqlServer.InternalEntities;
 
 namespace ControlWorks.Database.SqlServer
 {
     public class CoilInfo
     {
-        private List<SensorDataInternal> _sensorDataList;
-        public CoilInfo()
-        {
-            _sensorDataList = new List<SensorDataInternal>();
-        }
+        private List<SensorDataInternal> _sensorDataList = new List<SensorDataInternal>();
+
         public CoilDataInternal CoilData { get; set; }
         public LengthDataInternal LengthData  { get; set; }
         public List<SensorDataInternal> SensorData
         {
-            get
-            {
-                return _sensorDataList;
-            }
-            set { _sensorDataList = value; }
+            get => _sensorDataList;
+            set => _sensorDataList = value;
         }
-        public SensorReportInternal[] SensorReport { get; set; }
+
+        public string IPAddress { get; set; }
+        public string CpuName { get; set; }
 
         public void AddSensorData(SensorDataInternal data)
         {

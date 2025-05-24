@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using ControlWorks.Database.SqlServer.InternalEntities;
 
 namespace ControlWorks.Database.SqlServer.Repositories
 {
@@ -10,7 +11,7 @@ namespace ControlWorks.Database.SqlServer.Repositories
     {
         private readonly string _connectionString = Common.ConfigurationProvider.ConnectionString;
 
-        public async Task Insert(CoilDataInternal coilData, string ipAddress, string cpuName)
+        public async Task<int> Insert(CoilDataInternal coilData, string ipAddress, string cpuName)
         {
             var insertCommand = "[dbo].[CoilData_Insert]";
             try
@@ -48,15 +49,16 @@ namespace ControlWorks.Database.SqlServer.Repositories
                         command.Parameters.AddWithValue("@ipAddress", coilData);
                         command.Parameters.AddWithValue("@cpuName", cpuName);
 
-                        await command.ExecuteNonQueryAsync();
+                        return await command.ExecuteNonQueryAsync();
                     }
-
                 }
             }
             catch (Exception ex)
             {
                 Trace.TraceError(ex.ToString());
             }
+
+            return 0;
         }
     }
 }

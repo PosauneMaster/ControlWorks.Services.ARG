@@ -1,7 +1,7 @@
 ﻿USE [CoilInfo]
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].[LengthData_Insert]
+CREATE OR ALTER PROCEDURE LengthData_Insert
 (
 	 @coilDataId int
 	,@good decimal(9,5)
@@ -45,6 +45,7 @@ INSERT INTO [dbo].[LengthData]
            ,[Other]
            ,[Salvage]
            ,[LinearMeters])
+	 OUTPUT INSERTED.LengthDataId
      VALUES
 	 (
 		 @coilDataId
@@ -68,3 +69,5 @@ INSERT INTO [dbo].[LengthData]
 		,@linearMeters
 	)
 GO
+
+

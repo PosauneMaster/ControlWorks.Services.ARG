@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using ControlWorks.Database.SqlServer.InternalEntities;
 
 namespace ControlWorks.Database.SqlServer.Repositories
 {
@@ -10,7 +11,7 @@ namespace ControlWorks.Database.SqlServer.Repositories
     {
         private readonly string _connectionString = Common.ConfigurationProvider.ConnectionString;
 
-        public async Task Insert(LengthDataInternal lengthData, int coilDataId)
+        public async Task<int> Insert(LengthDataInternal lengthData, int coilDataId)
         {
             var insertCommand = "[dbo].[LengthData_Insert]";
             try
@@ -43,7 +44,7 @@ namespace ControlWorks.Database.SqlServer.Repositories
                         command.Parameters.AddWithValue("@salvage", lengthData.Salvage);
                         command.Parameters.AddWithValue("@linearMeters", lengthData.LinearMeters);
 
-                        await command.ExecuteNonQueryAsync();
+                        return await command.ExecuteNonQueryAsync();
                     }
                 }
             }
@@ -51,6 +52,8 @@ namespace ControlWorks.Database.SqlServer.Repositories
             {
                 Trace.TraceError(ex.ToString());
             }
+
+            return 0;
         }
     }
 }
