@@ -12,7 +12,7 @@ namespace ControlWorks.Database.SqlServer.Repositories
     {
         private readonly string _connectionString = Common.ConfigurationProvider.ConnectionString;
 
-        public async Task Insert(int coilDataId, IEnumerable<SensorDataInternal> sensorData)
+        public void Insert(int coilDataId, IEnumerable<SensorDataInternal> sensorData)
         {
             var sensorDataTable = MapToDataTable(coilDataId, sensorData);
 
@@ -28,10 +28,10 @@ namespace ControlWorks.Database.SqlServer.Repositories
                         command.CommandText = insertCommand;
                         command.CommandType = CommandType.StoredProcedure;
 
-                        var tableParameter = command.Parameters.AddWithValue("@sensorDataTable", sensorDataTable);
-                        tableParameter.SqlDbType = SqlDbType.Structured;
+                        //var tableParameter = command.Parameters.AddWithValue("@sensorDataTable", sensorDataTable);
+                        //tableParameter.SqlDbType = SqlDbType.Structured;
 
-                        await command.ExecuteNonQueryAsync();
+                        command.ExecuteNonQuery();
 
                     }
                 }
@@ -45,31 +45,40 @@ namespace ControlWorks.Database.SqlServer.Repositories
         private DataTable MapToDataTable(int coilDataId, IEnumerable<SensorDataInternal> sensorData)
         {
             var dt = new DataTable();
-            dt.Columns.Add("CoilDataId", typeof(int));
-            dt.Columns.Add("SensorNumber", typeof(int));
-            dt.Columns.Add("Position", typeof(decimal));
-            dt.Columns.Add("SensorData0", typeof(decimal));
-            dt.Columns.Add("SensorData1", typeof(decimal));
-            dt.Columns.Add("SensorData2", typeof(decimal));
-            dt.Columns.Add("SensorData3", typeof(decimal));
-            dt.Columns.Add("SensorData4", typeof(decimal));
 
-            foreach (var sensor in sensorData)
+            try
             {
-                var row = dt.NewRow();
-                row["CoilDataId"] = coilDataId;
-                row["SensorNumber"] = sensor.SensorNumber;
-                row["Position"] = sensor.Position;
-                row["SensorData0"] = sensor.SensorData0;
-                row["SensorData1"] = sensor.SensorData1;
-                row["SensorData2"] = sensor.SensorData2;
-                row["SensorData3"] = sensor.SensorData3;
-                row["SensorData4"] = sensor.SensorData4;
+                dt.Columns.Add("CoilDataId", typeof(int));
+                dt.Columns.Add("SensorNumber", typeof(int));
+                dt.Columns.Add("Position", typeof(decimal));
+                dt.Columns.Add("SensorData0", typeof(decimal));
+                dt.Columns.Add("SensorData1", typeof(decimal));
+                dt.Columns.Add("SensorData2", typeof(decimal));
+                dt.Columns.Add("SensorData3", typeof(decimal));
+                dt.Columns.Add("SensorData4", typeof(decimal));
 
-                dt.Rows.Add(row);
+                foreach (var sensor in sensorData)
+                {
+                    var row = dt.NewRow();
+                    row["CoilDataId"] = coilDataId;
+                    row["SensorNumber"] = sensor.SensorNumber;
+                    row["Position"] = sensor.Position;
+                    row["SensorData0"] = sensor.SensorData0;
+                    row["SensorData1"] = sensor.SensorData1;
+                    row["SensorData2"] = sensor.SensorData2;
+                    row["SensorData3"] = sensor.SensorData3;
+                    row["SensorData4"] = sensor.SensorData4;
+
+                    dt.Rows.Add(row);
+                }
+
+                return dt;
             }
-
-            return dt;
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
 
         }
     }

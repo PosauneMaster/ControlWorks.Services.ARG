@@ -1,9 +1,17 @@
 ﻿USE [CoilInfo]
 GO
 
-CREATE OR ALTER PROCEDURE LengthData_Insert
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE OR ALTER PROCEDURE [dbo].[LengthData_Insert]
 (
-	 @coilDataId int
+	 @lengthDataId int OUTPUT
+	,@coilDataId int
 	,@good decimal(9,5)
 	,@thicknessScrap decimal(9,5)
 	,@thicknessReclass decimal(9,5)
@@ -68,6 +76,8 @@ INSERT INTO [dbo].[LengthData]
 		,@salvage
 		,@linearMeters
 	)
+
+	SET @lengthDataId = SCOPE_IDENTITY();
 GO
 
 

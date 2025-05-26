@@ -11,7 +11,7 @@ namespace ControlWorks.Database.SqlServer.Repositories
     {
         private readonly string _connectionString = Common.ConfigurationProvider.ConnectionString;
 
-        public async Task<int> Insert(LengthDataInternal lengthData, int coilDataId)
+        public int Insert(LengthDataInternal lengthData, int coilDataId)
         {
             var insertCommand = "[dbo].[LengthData_Insert]";
             try
@@ -23,6 +23,8 @@ namespace ControlWorks.Database.SqlServer.Repositories
                     {
                         command.CommandText = insertCommand;
                         command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add("@lengthDataId", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                         command.Parameters.AddWithValue("@coilDataId", coilDataId);
                         command.Parameters.AddWithValue("@good", lengthData.Good);
@@ -44,7 +46,12 @@ namespace ControlWorks.Database.SqlServer.Repositories
                         command.Parameters.AddWithValue("@salvage", lengthData.Salvage);
                         command.Parameters.AddWithValue("@linearMeters", lengthData.LinearMeters);
 
-                        return await command.ExecuteNonQueryAsync();
+                        command.ExecuteNonQuery();
+
+                        int lengthDataId = Convert.ToInt32(command.Parameters["@lengthDataId"].Value);
+
+                        return lengthDataId;
+
                     }
                 }
             }

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using System.Text;
 using System.Xml.Serialization;
-using ControlWorks.Common;
+
 using ControlWorks.Database.SqlServer.InternalEntities;
 
 namespace ControlWorks.Database.SqlServer
@@ -33,14 +33,25 @@ namespace ControlWorks.Database.SqlServer
 
         public string Serialize()
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(CoilInfo));
-            using (var textWriter = new Utf8StringWriter())
+            try
             {
-                xmlSerializer.Serialize(textWriter, this);
-                var result = textWriter.ToString();
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(CoilInfo));
+                using (var textWriter = new Utf8StringWriter())
+                {
+                    xmlSerializer.Serialize(textWriter, this);
+                    var result = textWriter.ToString();
 
-                return result;
+                    return result;
+                }
             }
+            catch (Exception ex)
+            {
+
+            }
+
+            return null;
+
+
         }
     }
 

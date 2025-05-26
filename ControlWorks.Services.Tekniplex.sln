@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlWorks.Services.PVI",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlWorks.Common", "ControlWorks.Common\ControlWorks.Common.csproj", "{A42C2199-2DCA-441A-84B0-72854681BFCC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlWorks.Services.Tests", "ControlWorks.Services.Tests\ControlWorks.Services.Tests.csproj", "{35D54300-D34E-4D46-8B2A-544F4BB683CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,12 @@ Global
 		{A42C2199-2DCA-441A-84B0-72854681BFCC}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
 		{A42C2199-2DCA-441A-84B0-72854681BFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A42C2199-2DCA-441A-84B0-72854681BFCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35D54300-D34E-4D46-8B2A-544F4BB683CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35D54300-D34E-4D46-8B2A-544F4BB683CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35D54300-D34E-4D46-8B2A-544F4BB683CD}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{35D54300-D34E-4D46-8B2A-544F4BB683CD}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
+		{35D54300-D34E-4D46-8B2A-544F4BB683CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35D54300-D34E-4D46-8B2A-544F4BB683CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

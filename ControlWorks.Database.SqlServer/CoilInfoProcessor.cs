@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Runtime.Remoting.Contexts;
 using System.Threading.Tasks;
+
 using ControlWorks.Common;
 using ControlWorks.Database.SqlServer.Repositories;
 
@@ -15,33 +13,32 @@ namespace ControlWorks.Database.SqlServer
     {
         public void ProcessAsync(CoilInfo coilInfo)
         {
-            Task.Run(() => SaveToFile(coilInfo));
-            Task.Run(() => SaveToDb(coilInfo));
+            //SaveToFile(coilInfo);
+            SaveToDb(coilInfo);
 
+            //Task.Run(() => SaveToFile(coilInfo));
+            //Task.Run(() => SaveToDb(coilInfo));
         }
 
-        private Task SaveToFile(CoilInfo coilInfo)
+        private void SaveToFile(CoilInfo coilInfo)
         {
-            Task.Run(() =>   
+            try
             {
-                try
-                {
-                    var directoryPath = GetFileDirectory();
+                var directoryPath = GetFileDirectory();
 
-                    var fileName =
-                        $"CoilData.{coilInfo.CoilData.BatchNumber}.{DateTime.Now.ToString("yyyyMMddHHmmss")}.xml";
-                    var filePath = Path.Combine(directoryPath, fileName);
-                    Trace.TraceInformation($"Saving coilInfo to file {filePath}");
-                    File.WriteAllText(filePath, coilInfo.Serialize());
-                }
-                catch (Exception ex)
-                {
-                    Trace.TraceError(ex.ToString());
-                    ;
-                }
-            });
+                var fileName =
+                    $"CoilData.{coilInfo.CoilData.BatchNumber}.{DateTime.Now:yyyyMMddHHmmss}.xml";
+                var filePath = Path.Combine(directoryPath, fileName);
+                Trace.TraceInformation($"Saving coilInfo to file {filePath}");
+                File.WriteAllText(filePath, coilInfo.Serialize());
 
-            return Task.CompletedTask;
+                Trace.TraceInformation($"Created file for BatchNumber {coilInfo.CoilData.BatchNumber}: {fileName}");
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+            }
+
         }
 
         private string GetFileDirectory()
@@ -60,7 +57,7 @@ namespace ControlWorks.Database.SqlServer
             return currentPath;
         }
 
-        private async Task SaveToDb(CoilInfo coilInfo)
+        private void SaveToDb(CoilInfo coilInfo)
         {
             try
             {
@@ -70,9 +67,9 @@ namespace ControlWorks.Database.SqlServer
                 var lengthRepository = new LengthDataRepository();
                 var sensorDataRepository = new SensorDataRepository();
 
-                var coilDataId = await coilDataRepository.Insert(coilInfo.CoilData, coilInfo.IPAddress, coilInfo.CpuName);
-                var lengthDataId =  await lengthRepository.Insert(coilInfo.LengthData, coilDataId);
-                await sensorDataRepository.Insert(coilDataId, coilInfo.SensorData);
+                var coilDataId = coilDataRepository.Insert(coilInfo.CoilData, coilInfo.IPAddress, coilInfo.CpuName);
+                var lengthDataId =  lengthRepository.Insert(coilInfo.LengthData, coilDataId);
+                sensorDataRepository.Insert(coilDataId, coilInfo.SensorData);
 
                 Trace.TraceInformation($"Data save to Db. CoilDataId: {coilDataId}, LengthDataId: {lengthDataId}");
 

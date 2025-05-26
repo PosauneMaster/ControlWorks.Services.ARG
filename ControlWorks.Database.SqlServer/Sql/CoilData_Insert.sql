@@ -1,9 +1,15 @@
 ﻿USE [CoilInfo]
 GO
 
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
 
 CREATE OR ALTER PROCEDURE [dbo].[CoilData_Insert]
 (
+	@coilDataId int OUTPUT,
 	@materialType nvarchar(30),
 	@materialThickness decimal(9,5),
 	@originalSqYards int,
@@ -86,4 +92,7 @@ BEGIN
 	 ,@cpuName 
  )
 
+ SET @coilDataId = SCOPE_IDENTITY();
+
 END
+GO

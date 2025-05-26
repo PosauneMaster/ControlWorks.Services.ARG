@@ -11,7 +11,7 @@ namespace ControlWorks.Database.SqlServer.Repositories
     {
         private readonly string _connectionString = Common.ConfigurationProvider.ConnectionString;
 
-        public async Task<int> Insert(CoilDataInternal coilData, string ipAddress, string cpuName)
+        public int Insert(CoilDataInternal coilData, string ipAddress, string cpuName)
         {
             var insertCommand = "[dbo].[CoilData_Insert]";
             try
@@ -23,6 +23,8 @@ namespace ControlWorks.Database.SqlServer.Repositories
                     {
                         command.CommandText = insertCommand;
                         command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add("coilDataId", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                         command.Parameters.AddWithValue("@materialType", coilData.MaterialType);
                         command.Parameters.AddWithValue("@materialThickness", coilData.MaterialThickness);
@@ -46,10 +48,14 @@ namespace ControlWorks.Database.SqlServer.Repositories
                         command.Parameters.AddWithValue("@labInspector", coilData.LabInspector);
                         command.Parameters.AddWithValue("@rollNumber", coilData.RollNumber);
                         command.Parameters.AddWithValue("@labInspectDate", coilData.LabInspectDate);
-                        command.Parameters.AddWithValue("@ipAddress", coilData);
+                        command.Parameters.AddWithValue("@ipAddress", ipAddress);
                         command.Parameters.AddWithValue("@cpuName", cpuName);
 
-                        return await command.ExecuteNonQueryAsync();
+                        command.ExecuteNonQuery();
+
+                        var coilDataId = Convert.ToInt32(command.Parameters["coilDataId"].Value);
+
+                        return coilDataId;
                     }
                 }
             }
